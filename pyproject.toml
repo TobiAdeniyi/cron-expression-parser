@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cron-expression-parser"
+version = "0.0.1"
+authors = [
+  { name="Tobi Adeniyi", email="adeniyisoftware@gmail.com" },
+]
+description = "This project is a Python-based cron expression parser that displays a human-readable representation of the resulting time that command will be run."
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/TobiAdeniyi/cron-expression-parser"
+Issues = "https://github.com/TobiAdeniyi/cron-expression-parser/issues"
