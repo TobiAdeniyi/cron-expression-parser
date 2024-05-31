@@ -1,54 +1,12 @@
 """
 This module contains functions that which can be used for parsing Cron Strings, and 
 expands each of the fields into a list of possible values when the command will be run.
-
-The format is as follows:
-=========================
-
-The standard cron format with five time fields 
-    * minute
-    * hour 
-    * day of month
-    * month
-    * day of week
-
-The final argument will be a command
-
-e.g.
-
-Input:
-------
-"*/15 0 1,15 * 1-5 /usr/bin/find"
-
-Output:
--------
-minute:         0,15,30,45
-hour:           0
-day of month:   1,15
-month:          1,2,3,4,5,6,7,8,9,10,11,12
-day of week:    1,2,3,4,5
-command:        /usr/bin/find
 """
 
 import re
 
 from .cron_response import CronResponse
-
-DAYS_OF_WEEK = {"sun": 1, "mon": 2, "tue": 3, "wed": 4, "thu": 5, "fri": 6, "sat": 7}
-MONTH_NAMES = {
-    "jan": 1, 
-    "feb": 2, 
-    "mar": 3, 
-    "apr": 4, 
-    "may": 5, 
-    "jun": 6, 
-    "jul": 7, 
-    "aug": 8, 
-    "sep": 9, 
-    "oct": 10, 
-    "nov": 11, 
-    "dec": 12,
-}
+from util import unit_converter
 
 def parse_cron_string(cron_string: str) -> CronResponse:
     try:
@@ -66,7 +24,7 @@ def parse_cron_string(cron_string: str) -> CronResponse:
     # TODO: validate day_of_month, day_of_week
 
     # Replace Month strings with their numerical values values
-    for month_str, month_int in MONTH_NAMES.items():
+    for month_str, month_int in unit_converter.MONTH_NAMES.items():
         if month_str in month:
             month = month.replace(month_str, str(month_int))
 
@@ -85,7 +43,7 @@ def parse_cron_string(cron_string: str) -> CronResponse:
         raise NotImplementedError("`W` and `L` are not yet supported for day_of_month")
 
     # Replace Day of Week strings with their numerical values values
-    for day_str, day_int in DAYS_OF_WEEK.items():
+    for day_str, day_int in unit_converter.DAYS_OF_WEEK.items():
         if day_str in day_of_week:
             day_of_week = day_of_week.replace(day_str, str(day_int))
 
