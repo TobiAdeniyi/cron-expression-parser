@@ -65,10 +65,14 @@ test
         ```
 
 4. Install the required packages:
-    ```sh
-    pip install -r requirements.txt
-    pip install -e .
-    ```
+    - As a scrip:
+        ```sh
+        pip install -r requirements.txt
+        ```
+    - As an executable:
+        ```
+        pip install -e .
+        ```
 
 ## Usage
 
@@ -78,17 +82,48 @@ To use the cron expression parser, you can run the `cron_parser.py` script locat
 python -m src.cli "*/15 0 1,15 * 1-5 /usr/bin/find" 
 ```
 
+If package was installed as an executable, we can instead run the application directly form the command line, as shown below:
+```sh
+parse_cron_string "*/15 0 1,15 * 1-5 /usr/bin/find" 
+```
+
 ## Running Tests
 
-To run the tests, you can use the `unittest` framework. The test files are located in the `test` directory.
+Tessting the code is done uising pythons `unittest` framework. The test files are located in the `test` directory. To run all test use the command shown below.
 
 ```sh
 python -m unittest discover -s test
 ```
 
+To run a specific test:
+```sh
+# for a specific class
+python -m unittest test.<Test Class>
+
+# for a specific method
+python -m unittest test.<Test Class>.<Test Method>
+```
+
+
 ## Project Details
 
+- **src/cli.py**: Contians the entry point for the *CLI* tool.
 - **src/cron_parser.py**: Contains the main logic for parsing cron expressions.
 - **src/cron_response.py**: Contains the logic for generating human-readable responses from parsed cron expressions.
 - **test/test_cron_parser.py**: Contains unit tests for the cron parser.
 - **test/test_cron_response.py**: Contains unit tests for the cron response generator.
+
+
+## TODO
+
+The *TODO* list shown below is in no paticular order.
+- [ ] Add test cases for our entrypoint (**src/cli**).
+- [ ] Add the following parsin functionalities:
+    * **CronParser Module**:
+        - Usage of "W" and "L" in `day_of_month` field.
+        - Usage of "W" and "#" in `day_of_week` field.
+        - Update *Exception* statements to be more helpful.
+    * **CronResponse Module**:
+        - Ensure all fields fall within acceptable values (e.g., each day of week values falls within [1, 7]).
+        - Update *Exception* statements to be more helpful.
+- [ ] Ensure executable works on all operating systems, see the **Troubleshoot 1: Cannot find the “download” command** section of [this](https://betterprogramming.pub/build-your-python-script-into-a-command-line-tool-f0817e7cebda) Medium post.
