@@ -2,43 +2,30 @@
 
 This project is a Python-based cron expression parser. It allows you to parse cron expressions and get a human-readable response for the resulting time fields at which the command would be executed.
 
+
+https://github.com/TobiAdeniyi/cron-expression-parser/assets/43269117/0d7ccc96-6a1b-468d-9827-6083fb2ef26a
+
+
+
+
 ## Project Structure
 
 ```markdown
 LICENSE
 README.md
-env
-pyvenv.cfg
-bin
-Activate.ps1
-activate
-activate.csh
-activate.fish
-pip
-pip3
-pip3.12
-python 2
-python3 2
-python3.12
-include
-python3.12
-lib
+setup.py
+requirements.txt
+pyproject.toml
+.gitignore
 src
-**init**.py
-cron_parser.py
-cron_response.py
-**pycache**
-**init**.cpython-312.pyc
-cron_parser.cpython-312.pyc
-cron_response.cpython-312.pyc
+   **init**.py
+   cli.py
+   cron_parser.py
+   cron_response.py
 test
-**init**.py
-test_cron_parser.py
-test_cron_response.py
-**pycache**
-**init**.cpython-312.pyc
-test_cron_parser.cpython-312.pyc
-test_cron_response.cpython-312.pyc
+   **init**.py
+   test_cron_parser.py
+   test_cron_response.py
 ```
 
 ## Installation
